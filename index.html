@@ -3,97 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Akaya Serenity — Launching</title>
+  <title>Akaya Serenity</title>
   <link rel="icon" href="assets/images/favicon.png" />
   <style>
     html,body{height:100%;margin:0}
-    .video-wrap{position:fixed;inset:0;overflow:hidden;background:#000}
-    /* Position the video absolutely and use min-width/min-height so it always fills the viewport */
-    video{
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      min-width:100%;
-      min-height:100%;
-      width:auto;
-      height:auto;
-      background:#000;
+    body{display:flex;align-items:center;justify-content:center;background:#000}
+    img{max-width:100%;height:auto;display:block}
+    .wrap{width:100%;height:100vh;display:flex;align-items:center;justify-content:center;background:#000}
+    /* Coming soon ticker */
+    .coming-soon{position:fixed;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;overflow:hidden;background:rgba(0,0,0,0.6);z-index:10}
+    .coming-soon.top{top:0;bottom:auto}
+    .coming-soon .ticker{display:inline-block;white-space:nowrap;will-change:transform;animation:slide 10s linear infinite}
+    .coming-soon .ticker span{display:inline-block;color:#fff;font-weight:900;padding:0 40px;letter-spacing:4px;font-size:clamp(22px,6vw,56px)}
+    /* Single span animates continuously from left to right */
+    @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+    @media (prefers-reduced-motion: reduce){
+      .coming-soon .ticker{animation:none}
     }
-    .overlay{position:fixed;left:0;right:0;top:0;padding:18px;text-align:center;color:#fff;font-family:Inter,Arial,sans-serif;z-index:2}
-    .launch-text{font-weight:700;letter-spacing:2px}
-    .play-btn{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;width:88px;height:88px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-    .play-btn.hidden{display:none}
-    .volume-btn{position:fixed;right:18px;top:18px;z-index:5;width:46px;height:46px;border-radius:8px;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-    .volume-btn.hidden{display:none}
   </style>
 </head>
 <body>
-  <div class="video-wrap">
-    <video id="launchVideo" autoplay muted playsinline loop poster="assets/images/hero-stream-lodge.png">
-      <!-- Video file (case-sensitive on many hosts) -->
-      <source src="assets/videos/akaya-launch.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <div class="coming-soon top" aria-hidden="true">
+    <div class="ticker">
+      <span>#COMING SOON</span>
+    </div>
   </div>
-    <button id="playBtn" class="play-btn" aria-label="Play with sound">▶</button>
-  <script>
-    // Try to play; many browsers require user gesture for unmuted playback, but muted autoplay should work.
-    document.addEventListener('DOMContentLoaded', function(){
-      var v = document.getElementById('launchVideo');
-      if (v && v.paused) v.play().catch(function(){ /* ignore */ });
-      var btn = document.getElementById('playBtn');
-      var vol = (function(){
-        var b = document.createElement('button');
-        b.id = 'volumeBtn';
-        b.className = 'volume-btn';
-        b.setAttribute('aria-label','Toggle sound');
-        b.textContent = '🔈';
-        document.body.appendChild(b);
-        return b;
-      })();
-
-      function updateVolumeIcon() {
-        if (!vol) return;
-        vol.textContent = v && v.muted ? '🔈' : '🔊';
-      }
-
-      if (btn && v) {
-        btn.addEventListener('click', function () {
-          v.muted = false;
-          v.play().catch(function(){});
-          btn.classList.add('hidden');
-          updateVolumeIcon();
-        });
-        // If user taps video area directly on some devices, also unmute
-        v.addEventListener('click', function () {
-          if (v.muted) {
-            v.muted = false;
-            v.play().catch(function(){});
-            if (btn) btn.classList.add('hidden');
-            updateVolumeIcon();
-          }
-        });
-      }
-
-      if (vol) {
-        vol.addEventListener('click', function () {
-          if (!v) return;
-          // toggle mute; if unmuting and video is paused, play it
-          if (v.muted) {
-            v.muted = false;
-            v.play().catch(function(){});
-            if (btn) btn.classList.add('hidden');
-          } else {
-            v.muted = true;
-          }
-          updateVolumeIcon();
-        });
-        // Show volume button only when video element is present
-        if (!v) vol.classList.add('hidden');
-      }
-    });
-  </script>
+  <div class="wrap">
+    <img src="assets/images/akaya-launch.png" alt="Akaya Serenity" />
+  </div>
+  <div class="coming-soon" aria-hidden="true">
+    <div class="ticker">
+      <span>#COMING SOON</span>
+    </div>
+  </div>
 </body>
 </html>
 <!DOCTYPE html>
