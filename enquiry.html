@@ -56,17 +56,17 @@
         <span class="eyebrow">Contact</span>
         <h2>Akaya Serenity</h2>
         <p><strong>Location</strong><br />Near Gokarna, Karnataka</p>
-        <p><strong>WhatsApp</strong><br /><a href="https://wa.me/919886354057" target="_blank" rel="noopener">+91 98863 54057</a></p>
-        <p><strong>Email</strong><br /><a href="mailto:akayagroup25@gmail.com">akayagroup25@gmail.com</a></p>
+        <p><strong>WhatsApp</strong><br /><a data-contact-href="whatsapp" data-contact="phone"></a></p>
+        <p><strong>Email</strong><br /><a data-contact-href="mailto" data-contact="email"></a></p>
         
       </div>
 
-      <form class="enquiry-form" action="mailto:akayagroup25@gmail.com" method="post" enctype="text/plain">
+      <form id="enquiry-form" class="enquiry-form" action="#" method="post" novalidate>
         <label>Full Name<input type="text" name="Name" placeholder="Your name" /></label>
         <label>Email<input type="email" name="Email" placeholder="your@email.com" /></label>
         <label>Phone / WhatsApp<input type="text" name="Phone" placeholder="+91" /></label>
         <label>Message<textarea name="Message" rows="6" placeholder="Tell us about your stay enquiry"></textarea></label>
-        <button class="button button-dark" type="submit">Send enquiry</button>
+        <button class="button button-dark" type="submit">Send on WhatsApp</button>
       </form>
     </div>
   </section>
@@ -89,8 +89,8 @@
     </div>
     <div>
       <h4>Enquiry</h4>
-      <a href="https://wa.me/919886354057" target="_blank" rel="noopener">WhatsApp Reservation</a>
-      <a href="mailto:akayagroup25@gmail.com">akayagroup25@gmail.com</a>
+      <a data-contact-href="whatsapp">WhatsApp Reservation</a>
+      <a data-contact-href="mailto" data-contact="email"></a>
       <span>We respond personally.</span>
     </div>
   </div>
@@ -99,7 +99,36 @@
     <span>AKAYASERENITY.COM</span>
   </div>
 </footer>
+<script src="assets/js/contact.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Send enquiry to WhatsApp: build message from form fields and open wa.me link -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('enquiry-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = (form.querySelector('input[name="Name"]') || {}).value || '';
+    var email = (form.querySelector('input[name="Email"]') || {}).value || '';
+    var phone = (form.querySelector('input[name="Phone"]') || {}).value || '';
+    var message = (form.querySelector('textarea[name="Message"]') || {}).value || '';
+
+    var lines = [];
+    lines.push('*Akaya Serenity enquiry*');
+    lines.push('-----------------------');
+    if (name) lines.push('Name: ' + name);
+    if (email) lines.push('Email: ' + email);
+    if (phone) lines.push('Phone: ' + phone);
+    if (message) lines.push('Message: ' + message);
+
+    var text = lines.join('\n');
+    var phoneNumber = (window.SITE_CONTACT && window.SITE_CONTACT.whatsapp_number) || '919886354057';
+    var url = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  });
+});
+</script>
 
 </body>
 </html>
