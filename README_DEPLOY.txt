@@ -30,18 +30,6 @@ LOCAL TESTING
 4. Open this in your browser:
    http://localhost:8000
 
-BEFORE LIVE DEPLOYMENT
-Search and replace these placeholders:
-- WhatsApp number: 919886354057
-- Display phone: +91 99999 99999
-- Email: akayagroup25@gmail.com
-
-FREE HOSTING OPTIONS
-Recommended:
-- Cloudflare Pages
-- Netlify
-- GitHub Pages
-
 For most simple static hosting, upload the full folder contents exactly as-is.
 The homepage file must stay named index.html.
 
