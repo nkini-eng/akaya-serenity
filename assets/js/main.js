@@ -10,10 +10,23 @@ function setHeader() {
 setHeader();
 window.addEventListener('scroll', setHeader);
 
+function setNavOpen(open) {
+  nav.classList.toggle('open', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('nav-open', open);
+}
+
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    setNavOpen(!nav.classList.contains('open'));
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setNavOpen(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) setNavOpen(false);
   });
 }
 

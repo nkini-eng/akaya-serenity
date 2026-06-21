@@ -23,7 +23,11 @@ body{
   text-rendering:optimizeLegibility;
 }
 a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
+/* <picture> must not affect layout: let the inner <img> keep its own CSS
+   (centering, width, object-fit) exactly as before it was wrapped. */
+picture{display:contents}
+body.nav-open{overflow:hidden}
 p{line-height:1.75}
 .site-header{
   position:fixed;
@@ -97,7 +101,12 @@ p{line-height:1.75}
   overflow:hidden;
 }
 .home-hero{
-  background:url('../images/hero-stream-lodge.png') center/cover no-repeat;
+  background-image:url('../images/hero-stream-lodge-opt.jpg');
+  background-image:-webkit-image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 .hero-dim{
   position:absolute;
@@ -297,9 +306,18 @@ p{line-height:1.75}
   display:flex;
   align-items:center;
   color:#fff;
-  background:
+  background-image:
     linear-gradient(90deg, rgba(3,15,10,.96), rgba(3,15,10,.76) 38%, rgba(3,15,10,.10) 72%),
-    url('../images/arecanut-grove.png') center/cover no-repeat;
+    url('../images/arecanut-grove-opt.jpg');
+  background-image:
+    linear-gradient(90deg, rgba(3,15,10,.96), rgba(3,15,10,.76) 38%, rgba(3,15,10,.10) 72%),
+    -webkit-image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+  background-image:
+    linear-gradient(90deg, rgba(3,15,10,.96), rgba(3,15,10,.76) 38%, rgba(3,15,10,.10) 72%),
+    image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 .setting-content{
   width:min(1180px,92%);
@@ -356,7 +374,12 @@ p{line-height:1.75}
 .promise-band{
   position:relative;
   color:#fff;
-  background:url('../images/lantern-deck.png') center/cover no-repeat;
+  background-image:url('../images/lantern-deck-opt.jpg');
+  background-image:-webkit-image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 .promise-overlay{
   position:absolute;
@@ -448,9 +471,21 @@ p{line-height:1.75}
   background-position:center;
   background-size:cover;
 }
-.story-hero,.gallery-hero{background-image:url('../images/hero-stream-lodge.png')}
-.setting-hero{background-image:url('../images/arecanut-grove.png')}
-.experience-hero,.plan-hero,.enquiry-hero{background-image:url('../images/lantern-deck.png')}
+.story-hero,.gallery-hero{
+  background-image:url('../images/hero-stream-lodge-opt.jpg');
+  background-image:-webkit-image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+}
+.setting-hero{
+  background-image:url('../images/arecanut-grove-opt.jpg');
+  background-image:-webkit-image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+}
+.experience-hero,.plan-hero,.enquiry-hero{
+  background-image:url('../images/lantern-deck-opt.jpg');
+  background-image:-webkit-image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+}
 .page-hero-overlay{
   position:absolute;
   inset:0;
@@ -579,6 +614,21 @@ p{line-height:1.75}
 }
 .gallery-item.tall{grid-row:span 2}
 .gallery-item.wide{grid-column:span 2}
+.gallery-item.g-stream{
+  background-image:url('../images/hero-stream-lodge-opt.jpg');
+  background-image:-webkit-image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/hero-stream-lodge-opt.webp') type('image/webp'), url('../images/hero-stream-lodge-opt.jpg') type('image/jpeg'));
+}
+.gallery-item.g-grove{
+  background-image:url('../images/arecanut-grove-opt.jpg');
+  background-image:-webkit-image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/arecanut-grove-opt.webp') type('image/webp'), url('../images/arecanut-grove-opt.jpg') type('image/jpeg'));
+}
+.gallery-item.g-lantern{
+  background-image:url('../images/lantern-deck-opt.jpg');
+  background-image:-webkit-image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+  background-image:image-set(url('../images/lantern-deck-opt.webp') type('image/webp'), url('../images/lantern-deck-opt.jpg') type('image/jpeg'));
+}
 .gallery-item figcaption{
   position:absolute;
   z-index:1;
@@ -607,9 +657,66 @@ p{line-height:1.75}
 }
 .enquiry-grid{
   display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:56px;
+  grid-template-columns:.85fr 1.15fr;
+  gap:48px;
   align-items:start;
+}
+.enquiry-channels-wrap{display:grid;gap:20px}
+.enquiry-intro{
+  margin:0;
+  font-family:"Cormorant Garamond", serif;
+  font-size:clamp(1.35rem,2.2vw,1.75rem);
+  color:var(--green-900);
+  line-height:1.2;
+}
+.enquiry-channels{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  align-items:start;
+}
+.enquiry-card{
+  margin:0;
+  border-top:3px solid transparent;
+}
+.enquiry-card.is-whatsapp{border-top-color:var(--green-700)}
+.enquiry-card.is-email{border-top-color:var(--gold)}
+.enquiry-card-head{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:4px;
+}
+.enquiry-card-icon{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(7,20,13,.08);
+  font-size:20px;
+  line-height:1;
+}
+.enquiry-card.is-whatsapp .enquiry-card-icon{background:rgba(23,58,41,.12)}
+.enquiry-card.is-email .enquiry-card-icon{background:rgba(199,169,106,.18)}
+.enquiry-card-head h3{
+  margin:0 0 4px;
+  font-family:"Cormorant Garamond", serif;
+  font-size:1.85rem;
+  line-height:1;
+  font-weight:600;
+  color:var(--green-900);
+}
+.enquiry-card-head .small-note{margin:0}
+.enquiry-card form{display:grid;gap:18px}
+.label-optional{
+  font-size:11px;
+  font-weight:600;
+  text-transform:none;
+  letter-spacing:0;
+  color:var(--muted);
 }
 .enquiry-form{
   background:#fffaf1;
@@ -633,10 +740,33 @@ p{line-height:1.75}
   border:1px solid #d6cdbd;
   background:#f7f0e4;
   padding:14px 14px;
-  font:inherit;
+  font-family:inherit;
+  font-size:16px; /* >=16px avoids iOS auto-zoom on focus */
+  line-height:1.4;
   color:#111;
+  border-radius:2px;
+}
+.enquiry-form input:focus,.enquiry-form textarea:focus{
+  outline:2px solid var(--green-700);
+  outline-offset:1px;
+  border-color:var(--green-700);
 }
 .enquiry-form button{cursor:pointer;width:max-content}
+.enquiry-form button[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+/* Honeypot field: visually hidden but still in the DOM for bots */
+.hp-field{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.verify-block{display:grid;gap:14px;padding:16px;border:1px dashed #cdbfa6;background:#fbf6ec}
+.verify-block .button.small{min-width:0;width:100%}
+.code-row{display:grid;gap:10px}
+.verify-status{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.verify-status.ok{color:#1d6b3f}
+.verify-status.err{color:#a8341f}
+/* Accessible keyboard focus across interactive elements */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+.nav-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .small-note{
   color:var(--muted)!important;
   font-size:14px!important;
@@ -698,6 +828,54 @@ p{line-height:1.75}
   .footer-bottom{display:block;text-align:center}
   .footer-bottom span + span{margin-top:8px}
   .center-cta{padding:30px 22px}
+}
+
+@media(max-width:900px){
+  .enquiry-channels{grid-template-columns:1fr}
+}
+
+/* Tablet / small-laptop refinements between the mobile and desktop layouts */
+@media(max-width:768px){
+  .main-nav a{
+    padding:12px 4px;        /* larger tap targets in the open mobile menu */
+    font-size:13px;
+    width:100%;
+  }
+  .main-nav .nav-cta{width:100%}
+  .section{padding:48px 0}
+  .inner-reading{padding-top:60px}
+  .reading-grid,.reading-grid.reverse{gap:30px}
+  .image-panel img{min-height:320px}
+  .page-hero-text p{font-size:16px}
+  .button{width:100%;min-width:0}
+  .enquiry-form button{width:100%}
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows:auto;
+  }
+  .gallery-item{aspect-ratio:4/3;min-height:0}
+  .gallery-item.tall,.gallery-item.wide{grid-row:auto;grid-column:auto}
+}
+
+/* Small phones: single-column gallery with natural proportions */
+@media(max-width:560px){
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-item{aspect-ratio:3/2}
+  .gallery-item figcaption{font-size:1.7rem}
+}
+
+/* Large desktops: allow content to breathe a little wider */
+@media(min-width:1440px){
+  .nav-shell,.section,.footer-top,.footer-bottom,.promise-grid{
+    width:min(1320px,90%);
+  }
+  .story-section{padding-left:max(4%,calc((100% - 1320px)/2));padding-right:max(4%,calc((100% - 1320px)/2))}
+}
+
+/* Respect users who prefer reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .button:hover{transform:none}
 }
 
 

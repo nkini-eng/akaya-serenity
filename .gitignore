@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Accidental npm at repo root
+/package-lock.json
+
+# Dev tooling (image optimizer) dependencies
+tools/node_modules/
+tools/package-lock.json

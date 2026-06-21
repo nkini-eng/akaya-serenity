@@ -1,0 +1,13 @@
+{
+  "name": "akaya-serenity-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dev-only image optimization tooling for the Akaya Serenity static site.",
+  "scripts": {
+    "optimize:images": "node optimize-images.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}
