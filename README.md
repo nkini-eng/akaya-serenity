@@ -47,7 +47,7 @@ The enquiry page offers **two independent channels** side by side:
 
 Setup requires a free [EmailJS](https://www.emailjs.com/) account (no credit card, ~200 emails/month).
 Create **two templates** — one for OTP verification, one for enquiry delivery — and paste
-the IDs into [`assets/js/enquiry-config.js`](assets/js/enquiry-config.js). Add
+the IDs into [`assets/js/enquiry-config.js`](assets/js/enquiry-config.js). Set the enquiry template **To** field to `akayaserenity@gmail.com` (also in [`assets/data/contact.json`](assets/data/contact.json)). Add
 `https://akayaserenity.com` (and `http://localhost:8000` for local testing) under
 EmailJS → Account → Security → Allowed origins.
 
