@@ -9,11 +9,12 @@
   <meta name="theme-color" content="#07140d" />
   <meta property="og:title" content="Akaya Serenity | Luxury rooted in nature" />
   <meta property="og:description" content="A private grove retreat near Gokarna, Karnataka. Stream, palms, stillness, and comfort without excess." />
-  <meta property="og:image" content="assets/images/hero-stream-lodge.png" />
+  <meta property="og:image" content="assets/images/hero-stream-lodge-opt.jpg" />
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/lantern-deck-opt.webp" type="image/webp" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
@@ -22,7 +23,10 @@
 <header class="site-header" data-header>
   <div class="nav-shell">
     <a class="nav-brand" href="index.html" aria-label="Akaya Serenity home">
-      <img src="assets/images/akaya-brand-transparent.png" alt="Akaya Serenity" />
+      <picture>
+        <source type="image/webp" srcset="assets/images/akaya-brand-transparent-opt.webp" />
+        <img src="assets/images/akaya-brand-transparent-opt.png" alt="Akaya Serenity" width="600" height="399" decoding="async" />
+      </picture>
     </a>
     <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
       <span></span><span></span><span></span>
@@ -46,28 +50,78 @@
     <div class="page-hero-text">
       <span>Enquiry</span>
       <h1>Begin here.</h1>
-      <p>Enquiries and reservations via WhatsApp — we respond personally.</p>
+      <p>Enquire via WhatsApp or email — we respond personally.</p>
     </div>
   </section>
 
   <section class="section enquiry-section">
     <div class="enquiry-grid">
-      <div>
+      <div class="enquiry-contact">
         <span class="eyebrow">Contact</span>
         <h2>Akaya Serenity</h2>
         <p><strong>Location</strong><br />Near Gokarna, Karnataka</p>
         <p><strong>WhatsApp</strong><br /><a data-contact-href="whatsapp" data-contact="phone"></a></p>
         <p><strong>Email</strong><br /><a data-contact-href="mailto" data-contact="email"></a></p>
-        
       </div>
 
-      <form id="enquiry-form" class="enquiry-form" action="#" method="post" novalidate>
-        <label>Full Name<input type="text" name="Name" placeholder="Your name" /></label>
-        <label>Email<input type="email" name="Email" placeholder="your@email.com" /></label>
-        <label>Phone / WhatsApp<input type="text" name="Phone" placeholder="+91" /></label>
-        <label>Message<textarea name="Message" rows="6" placeholder="Tell us about your stay enquiry"></textarea></label>
-        <button class="button button-dark" type="submit">Send on WhatsApp</button>
-      </form>
+      <div class="enquiry-channels-wrap">
+        <p class="enquiry-intro">Choose how you'd like to reach us</p>
+        <div class="enquiry-channels">
+
+          <article class="enquiry-card enquiry-form is-whatsapp">
+            <header class="enquiry-card-head">
+              <span class="enquiry-card-icon" aria-hidden="true">&#128172;</span>
+              <div>
+                <h3>WhatsApp</h3>
+                <p class="small-note">Fastest — chat with us directly from your phone.</p>
+              </div>
+            </header>
+            <form id="whatsapp-form" novalidate>
+              <label>Full Name<input type="text" name="Name" autocomplete="name" placeholder="Your name" required /></label>
+              <label>Phone / WhatsApp<input type="tel" name="Phone" autocomplete="tel" inputmode="numeric" placeholder="+91 98xxxxxxxx" required /></label>
+              <label>Message<textarea name="Message" rows="5" placeholder="Dates, guests, and what you have in mind" required minlength="10"></textarea></label>
+              <div class="hp-field" aria-hidden="true">
+                <label>Company<input type="text" name="Company" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <p id="wa-status" class="verify-status" role="status" aria-live="polite"></p>
+              <button class="button button-dark" type="submit">Continue on WhatsApp</button>
+            </form>
+          </article>
+
+          <article class="enquiry-card enquiry-form is-email">
+            <header class="enquiry-card-head">
+              <span class="enquiry-card-icon" aria-hidden="true">&#9993;</span>
+              <div>
+                <h3>Email</h3>
+                <p class="small-note">Prefer email — we'll reply to your inbox.</p>
+              </div>
+            </header>
+            <form id="email-form" novalidate>
+              <label>Full Name<input type="text" name="Name" autocomplete="name" placeholder="Your name" required /></label>
+              <label>Email<input type="email" name="Email" autocomplete="email" inputmode="email" placeholder="your@email.com" required /></label>
+              <label>Phone <span class="label-optional">(optional)</span><input type="tel" name="Phone" autocomplete="tel" inputmode="numeric" placeholder="+91 98xxxxxxxx" /></label>
+              <label>Message<textarea name="Message" rows="5" placeholder="Dates, guests, and what you have in mind" required minlength="10"></textarea></label>
+              <div class="hp-field" aria-hidden="true">
+                <label>Website<input type="text" name="Website" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
+              <div id="email-verify-block" class="verify-block" hidden>
+                <button type="button" id="email-send-code" class="button button-light small">Verify email</button>
+                <div id="email-code-row" class="code-row" hidden>
+                  <label>Enter the 6-digit code sent to your email
+                    <input type="text" id="email-verify-code" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••" />
+                  </label>
+                  <button type="button" id="email-confirm-code" class="button button-light small">Confirm code</button>
+                </div>
+              </div>
+
+              <p id="email-status" class="verify-status" role="status" aria-live="polite"></p>
+              <button id="email-submit" class="button button-dark" type="submit" disabled>Send enquiry</button>
+            </form>
+          </article>
+
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -99,36 +153,12 @@
     <span>AKAYASERENITY.COM</span>
   </div>
 </footer>
-<script src="assets/js/contact.js"></script>
-<script src="assets/js/main.js"></script>
+<script defer src="assets/js/contact.js"></script>
+<script defer src="assets/js/main.js"></script>
 
-<!-- Send enquiry to WhatsApp: build message from form fields and open wa.me link -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var form = document.getElementById('enquiry-form');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = (form.querySelector('input[name="Name"]') || {}).value || '';
-    var email = (form.querySelector('input[name="Email"]') || {}).value || '';
-    var phone = (form.querySelector('input[name="Phone"]') || {}).value || '';
-    var message = (form.querySelector('textarea[name="Message"]') || {}).value || '';
-
-    var lines = [];
-    lines.push('*Akaya Serenity enquiry*');
-    lines.push('-----------------------');
-    if (name) lines.push('Name: ' + name);
-    if (email) lines.push('Email: ' + email);
-    if (phone) lines.push('Phone: ' + phone);
-    if (message) lines.push('Message: ' + message);
-
-    var text = lines.join('\n');
-    var phoneNumber = (window.SITE_CONTACT && window.SITE_CONTACT.whatsapp_number) || '919886354057';
-    var url = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(text);
-    window.open(url, '_blank');
-  });
-});
-</script>
+<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script defer src="assets/js/enquiry-config.js"></script>
+<script defer src="assets/js/enquiry-auth.js"></script>
 
 </body>
 </html>
